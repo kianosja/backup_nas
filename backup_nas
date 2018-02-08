@@ -1,0 +1,32 @@
+#!/bin/bash
+
+WHAT=$1
+
+case $WHAT in
+backup)
+	rsync -avz --delete -e ssh /nas/backup backup:/nas
+	;;
+comics)
+	rsync -avz --delete -e ssh /nas/comics backup:/nas
+	;;
+mp3)
+	rsync -avz --delete -e ssh /nas/mp3 backup:/nas
+	;;
+video)
+	rsync -avz --delete -e ssh /nas/video backup:/nas
+	;;
+work)
+	rsync -avz --delete -e ssh /nas/work backup:/nas
+	;;
+all)
+	rsync -avz --delete -e ssh /nas/backup backup:/nas
+	rsync -avz --delete -e ssh /nas/comics backup:/nas
+	rsync -avz --delete -e ssh /nas/mp3 backup:/nas
+	rsync -avz --delete -e ssh /nas/video backup:/nas
+	rsync -avz --delete -e ssh /nas/work backup:/nas
+	;;
+*)
+	echo "Usage : backup_nas [backup|comics|mp3|video|work]"
+	echo ""
+esac
+
